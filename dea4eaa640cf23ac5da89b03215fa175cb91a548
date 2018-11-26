@@ -1,0 +1,1 @@
+{"jobID":"927081d3-09e8-7801-f355-60ac8ce22416","spec":{"type":"policy","cause":{"Message":"","User":"Paper Huang \u003cpaperhs901230@gmail.com\u003e"},"spec":{"default:deployment/hello":{"add":null,"remove":{"automated":"true"}}}},"result":null}
