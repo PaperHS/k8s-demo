@@ -1,16 +1,10 @@
-FROM golang:1.11 as builder
-COPY . .
-RUN go get github.com/labstack/echo
-RUN go build -o hello
+FROM golang:1.11 as build
+WORKDIR /go/src
+COPY server.go ./
+RUN go build -o ./hello
 
 FROM alpine:3.8
-
-RUN addgroup -S app \
-    && adduser -S -g app app \
-    && apk --no-cache add \
-    curl openssl netcat-openbsd
-WORKDIR /home/app
-COPY --from=builder . .
-RUN chown -R app:app ./
-USER app
-CMD ["./hello"]
+WORKDIR /root
+COPY --from=build /go/src/hello .
+RUn chmod +x /root/hello
+ENTRYPOINT ["/root/hello"]

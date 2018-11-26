@@ -1,15 +1,16 @@
 package main
 
 import (
-        "net/http"
-
-        "github.com/labstack/echo"
+    "fmt"
+    "log"
+    "net/http"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi Helloworld, I love %s!", r.URL.Path[1:])
+}
+
 func main() {
-        e := echo.New()
-        e.GET("/", func(c echo.Context) error {
-                return c.String(http.StatusOK, "Hello, World upgrade!")
-        })
-        e.Logger.Fatal(e.Start(":1323"))
+    http.HandleFunc("/", handler)
+    log.Fatal(http.ListenAndServe(":1323", nil))
 }
