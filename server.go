@@ -8,7 +8,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("request coming!")
-	fmt.Fprintf(w, "Hi Helloworld, I love %s!", r.URL.Path[1:])
+	fmt.Fprintf(w, "Hi ArcBlock!!, I love %s!", r.URL.Path[1:])
 }
 
 func main() {
