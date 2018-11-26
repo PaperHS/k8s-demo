@@ -1,10 +1,12 @@
-FROM golang:1.11 as build
+FROM golang:1.11-alpine as build
 WORKDIR /go/src
 COPY server.go ./
-RUN go build -o ./hello
-
-FROM alpine:3.8
-WORKDIR /root
-COPY --from=build /go/src/hello .
-RUn chmod +x /root/hello
-ENTRYPOINT ["/root/hello"]
+RUN go build -o hello
+#
+#CMD ["./hello"]
+FROM alpine as prod
+WORKDIR /app
+COPY --from=build /go/src/hello ./helloworld
+RUN chmod +x helloworld
+EXPOSE 1323
+CMD ["./helloworld"]

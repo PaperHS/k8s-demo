@@ -2,14 +2,8 @@ apiVersion: skaffold/v1alpha5
 kind: Config
 build:
   artifacts:
-  - imageName: hello-echo
-    docker:
-      dockerfilePath: ./dockerfile.ci
-
+  - image: paperhs/k8s-hello
 deploy:
   kubectl: 
     manifests:
       - k8s-*
-
-      
-         
