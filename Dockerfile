@@ -10,7 +10,7 @@ RUN addgroup -S app \
     && apk --no-cache add \
     curl openssl netcat-openbsd
 WORKDIR /home/app
-COPY --from=builder ./hello ./hello
+COPY --from=builder . .
 RUN chown -R app:app ./
 USER app
 CMD ["./hello"]
